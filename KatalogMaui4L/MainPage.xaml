@@ -1,0 +1,30 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="KatalogMaui4L.MainPage">
+
+    <ScrollView>
+        <VerticalStackLayout
+            Padding="30,0"
+            Spacing="25">
+            <Label Text="Wyszukiwanie:" />
+            <Entry x:Name="searchEntry" Placeholder="Wpisz nazwę produktu" />
+            <Button Text="Szukaj" Clicked="Button_Clicked" />
+            <CollectionView x:Name="productsCollectionView" ItemsSource="{Binding Produkty}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+
+                            <VerticalStackLayout>
+                                <Label Text="{Binding Nazwa}" FontAttributes="Bold" />
+                                <Label Text="{Binding Kategoria}" />
+                                <Label Text="{Binding Cena, StringFormat='Cena: {0:C}'}" />
+                            </VerticalStackLayout>
+
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            
+            </CollectionView>
+        </VerticalStackLayout>
+    </ScrollView>
+
+</ContentPage>
