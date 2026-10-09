@@ -24,7 +24,7 @@
 			<Label x:Name="errorLabel" TextColor="Red" IsVisible="False" />
 			<Button Text="Dodaj produkt" Clicked="DodajProdukt_Clicked" />
 			<!-- // dzisiejsze dodawanie -->
-            <CollectionView x:Name="productsCollectionView" ItemsSource="{Binding Produkty}">
+            <CollectionView x:Name="productsCollectionView" ItemsSource="{Binding Produkty}" SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
 
@@ -38,7 +38,9 @@
                 </CollectionView.ItemTemplate>
             
             </CollectionView>
+			<Button Text="Usuń produkt" Clicked="UsunProdukt_Clicked" />
         </VerticalStackLayout>
+		
     </ScrollView>
 
 </ContentPage>

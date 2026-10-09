@@ -39,5 +39,12 @@ namespace KatalogProduktow4L.Mobile
             };
             Produkty.Add(nowyProdukt);
         }
+        private void UsunProdukt_Clicked(object sender, EventArgs e)
+        {
+            if (productsCollectionView.SelectedItem is Produkt wybranyProdukt)
+            {
+                Produkty.Remove(wybranyProdukt);
+            }
+        }
     }
 }
