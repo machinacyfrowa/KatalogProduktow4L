@@ -7,18 +7,32 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
+			<!-- wyszukiwanie  z poprzednich zajęć-->
             <Label Text="Wyszukiwanie:" />
             <Entry x:Name="searchEntry" Placeholder="Wpisz nazwę produktu" />
             <Button Text="Szukaj" Clicked="Button_Clicked" />
+			<!-- dzisiejsze dodawanie -->
+			<Entry x:Name="nazwaEntry" Placeholder="Nazwa produktu" />
+			<Entry x:Name="cenaEntry" Placeholder="Cena produktu" />
+			<Picker x:Name="kategoriaPicker" Title="Wybierz kategorię">
+                <Picker.Items>
+                    <x:String>Elektronika</x:String>
+                    <x:String>Odzież</x:String>
+                    <x:String>Jedzenie</x:String>
+                </Picker.Items>
+            </Picker>
+			<Label x:Name="errorLabel" TextColor="Red" IsVisible="False" />
+			<Button Text="Dodaj produkt" Clicked="DodajProdukt_Clicked" />
+			<!-- // dzisiejsze dodawanie -->
             <CollectionView x:Name="productsCollectionView" ItemsSource="{Binding Produkty}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
 
-                            <VerticalStackLayout>
-                                <Label Text="{Binding Nazwa}" FontAttributes="Bold" />
-                                <Label Text="{Binding Kategoria}" />
-                                <Label Text="{Binding Cena, StringFormat='Cena: {0:C}'}" />
-                            </VerticalStackLayout>
+						<Grid Padding="10" ColumnDefinitions="*,*,*" BackgroundColor="LightGray" Margin="5">
+							<Label Grid.Column="0" Text="{Binding Nazwa}" FontAttributes="Bold" />
+							<Label Grid.Column="1" Text="{Binding Kategoria}" />
+							<Label Grid.Column="2" Text="{Binding Cena, StringFormat='Cena: {0:C}'}" />
+						</Grid>
 
                     </DataTemplate>
                 </CollectionView.ItemTemplate>
