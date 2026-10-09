@@ -13,7 +13,7 @@
             <Button Text="Szukaj" Clicked="Button_Clicked" />
 			<!-- dzisiejsze dodawanie -->
 			<Entry x:Name="nazwaEntry" Placeholder="Nazwa produktu" />
-			<Entry x:Name="cenaEntry" Placeholder="Cena produktu" />
+			<Entry x:Name="cenaEntry" Placeholder="Cena produktu" Keyboard="Numeric" />
 			<Picker x:Name="kategoriaPicker" Title="Wybierz kategorię">
                 <Picker.Items>
                     <x:String>Elektronika</x:String>
