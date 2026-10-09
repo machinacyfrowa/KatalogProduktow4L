@@ -31,7 +31,7 @@ foreach (var produkt in produktyWKategoriach["Kategoria1"])
 Console.WriteLine("Wszystkie produkty:");
 foreach (var produkt in produkty)
 {
-    Console.WriteLine(produkt.Nazwa);
+    Console.WriteLine(produkt.ToString());
 }
 Console.WriteLine("Produkty o cenie mniejszej niż 20:");
 foreach (var produkt in produkty.Where(produkt => produkt.Cena < 20))

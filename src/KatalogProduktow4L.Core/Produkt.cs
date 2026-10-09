@@ -38,5 +38,10 @@ namespace KatalogProduktow4L.Core
                 }
             }
         }
+        //tu nadpisujemy defaultowa funkcje tostring dla wszystkich obiektow w c#
+        public override string ToString()
+        {
+            return $"Nazwa: {Nazwa}, Cena: {Cena}, Kategoria: {Kategoria}, Ilość: {Ilosc}, Wartość magazynu: {WartoscMagazynu}";
+        }
     }
 }
