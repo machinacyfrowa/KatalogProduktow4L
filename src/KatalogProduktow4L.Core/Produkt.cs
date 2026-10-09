@@ -43,5 +43,10 @@ namespace KatalogProduktow4L.Core
         {
             return $"Nazwa: {Nazwa}, Cena: {Cena}, Kategoria: {Kategoria}, Ilość: {Ilosc}, Wartość magazynu: {WartoscMagazynu}";
         }
+        //dummy funkcja opi stylko zeby pokazac virtual - dopuszczam że ta funkcja zostanie nadpisana w klasach dziedziczących po klasie Produkt
+        public virtual string Opis()
+        {
+            return "Tu jest opis produktu";
+        }
     }
 }

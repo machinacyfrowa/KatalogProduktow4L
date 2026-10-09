@@ -17,5 +17,9 @@ namespace KatalogProduktow4L.Core
         {
             return $"Nazwa: {Nazwa}, Cena: {Cena}, Kategoria: {Kategoria}, Ilość: {Ilosc}, Wartość magazynu: {WartoscMagazynu}, Producent: {Producent}";
         }
+        public string Opis()
+        {
+            return "Tu jest opis podzespolu dla podzespolu";
+        }
     }
 }
