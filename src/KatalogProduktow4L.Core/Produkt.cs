@@ -10,7 +10,7 @@ namespace KatalogProduktow4L.Core
         public double Cena { get; set; }
         public string Kategoria { get; set; }
         public int Ilosc { get; set; }
-        public double WartoscMagazynu
+        public virtual double WartoscMagazynu
         {
             get { return Cena * Ilosc ; }
         }
@@ -41,12 +41,14 @@ namespace KatalogProduktow4L.Core
         //tu nadpisujemy defaultowa funkcje tostring dla wszystkich obiektow w c#
         public override string ToString()
         {
-            return $"Nazwa: {Nazwa}, Cena: {Cena}, Kategoria: {Kategoria}, Ilość: {Ilosc}, Wartość magazynu: {WartoscMagazynu}";
+            return $"Nazwa: {Nazwa}, Cena: {Cena}, Kategoria: {Kategoria}, " +
+                $"Ilość: {Ilosc}, Wartość magazynu: {WartoscMagazynu}";
         }
         //dummy funkcja opi stylko zeby pokazac virtual - dopuszczam że ta funkcja zostanie nadpisana w klasach dziedziczących po klasie Produkt
         public virtual string Opis()
         {
-            return "Tu jest opis produktu";
+            return $"Nazwa: {Nazwa}, Cena: {Cena}, Kategoria: {Kategoria}, " +
+                $"Ilość: {Ilosc}, Wartość magazynu: {WartoscMagazynu}";
         }
     }
 }

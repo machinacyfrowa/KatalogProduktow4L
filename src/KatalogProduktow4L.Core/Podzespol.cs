@@ -17,9 +17,10 @@ namespace KatalogProduktow4L.Core
         {
             return $"Nazwa: {Nazwa}, Cena: {Cena}, Kategoria: {Kategoria}, Ilość: {Ilosc}, Wartość magazynu: {WartoscMagazynu}, Producent: {Producent}";
         }
-        public string Opis()
-        {
-            return "Tu jest opis podzespolu dla podzespolu";
+        public override string Opis()
+        {   //zwraca to samo co produkt ale jeszcze dodaje producenta
+            return $"Producent: {Producent}, Nazwa: {Nazwa}, Cena: {Cena}, Kategoria: {Kategoria}, " +
+                $"Ilość: {Ilosc}, Wartość magazynu: {WartoscMagazynu}";
         }
     }
 }
