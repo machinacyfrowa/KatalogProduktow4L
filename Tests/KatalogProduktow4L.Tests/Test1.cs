@@ -88,5 +88,20 @@ namespace KatalogProduktow4L.Tests
         //1. Sprawdzamy czy są dokładnie 3 kategorie produktów w liście
         //2. Sprawdzamy czy w kategorii "Kategoria1" jest dokładnie 5 produktów
         //Najpierw napiszcie sobie funkcję pomocniczą która przygotuje wam dane do testów
+        [TestMethod]
+        public void CzyOpisPodzespoluZawieraProducenta()
+        {
+            //arrange - przygotowujemy obiekt podzespołu
+            string nazwaProducenta = "Producent1";
+            var podzespol = new Podzespol { Nazwa = "Podzespol1", Cena = 25.0, 
+                Kategoria = "Kategoria2", Ilosc = 2, Producent = nazwaProducenta };
+            //act - sciagam opis do zmiennej
+            var opis = podzespol.Opis();
+            //assert - sprawdzam czy opis zawiera nazwę producenta
+            StringAssert.Contains(opis, nazwaProducenta, "Opis podzespołu powinien zawierać nazwę producenta.");
+        }
+        //napisz testy które sprawdzą czy:
+        //1. wartosc magazynu dla usługi jest poprawnie ustawiona (powinna być równa 0)
+        //2. czy opis akcesorium zawiera kolor akcesorium
     }
 }
