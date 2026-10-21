@@ -47,3 +47,19 @@ foreach (var produkt in produkty.OrderBy(produkt => produkt.Cena))
 Produkt.SprawdzWartosc(produkty[0]);
 //sprawdz ceny wszystkich produktów
 Produkt.SprawdzCeny(produkty);
+
+//nowy test - dziedziczenie i nadpisanie funkcji
+//uwaga lista jest typu Produkt ale moze przechowywac
+//obiekty klas dziedziczacych po klasie Produkt
+var produktyDziedziczone = new List<Produkt>
+{
+    new Produkt { Nazwa = "Produkt1", Cena = 10.0, Kategoria = "Kategoria1", Ilosc = 5 },
+    new Podzespol { Nazwa = "Podzespol1", Cena = 25.0, Kategoria = "Kategoria2", Ilosc = 2, Producent = "Producent1" },
+    new Akcesorium { Nazwa = "Akcesorium1", Cena = 15.0, Kategoria = "Kategoria2", Ilosc = 3, Kolor = "Czerwony" },
+    new Usluga { Nazwa = "Usluga1", Cena = 20.0, Kategoria = "Kategoria3", Ilosc = 0 }
+};
+//który opis zobaczymy?
+foreach (var produkt in produktyDziedziczone)
+{
+    Console.WriteLine(produkt.Opis());
+}
