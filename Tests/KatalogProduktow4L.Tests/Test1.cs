@@ -1,4 +1,5 @@
 ﻿using KatalogProduktow4L.Core;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace KatalogProduktow4L.Tests
 {
@@ -137,7 +138,18 @@ namespace KatalogProduktow4L.Tests
         //2. Dodanie dwa razy tego samego produktu do zamówienia nie dodaje pozycji
         //   zwiększa jego ilość i wartość zamówienia jest poprawna 
         //3. Klasa rzuca wyjątek jeśli dodamy do zamówienia produkt z ilością <= 0
-        //   wykorzystaj Assert.ThrowsExacly<ArgumentException> i sprawdź czy komunikat wyjątku jest poprawny
+        //   wykorzystaj var ex = Assert.Throws<Exception> i sprawdź czy wyjątek jest typu ArgumentException
+        //   ex.Message powinien zawierać tekst "Ilość musi być większa od zera."
+        [TestMethod]
+        public void ZamowienieDodanieUjemnejIlosciRzucaWyjatek()
+        {
+            // Arrange
+            var zamowienie = new Zamowienie();
+            var produkt = PrzygotujProdukt();
+            // Act & Assert
+            var ex = Assert.ThrowsExactly<ArgumentException>(() => zamowienie.Dodaj(produkt, -1));
+            StringAssert.Contains(ex.Message, "Ilość musi być większa od zera.", "Dodanie produktu z ilością <= 0 powinno rzucić wyjątek ArgumentException.");
+        }
         //4. Zamówienie liczy poprawnie sumę wartości dwóch pozycji - jedna z podzespołem, druga z usługą
     }
 }
