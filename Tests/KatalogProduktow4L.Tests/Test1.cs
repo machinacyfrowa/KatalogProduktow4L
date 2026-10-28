@@ -103,5 +103,13 @@ namespace KatalogProduktow4L.Tests
         //napisz testy które sprawdzą czy:
         //1. wartosc magazynu dla usługi jest poprawnie ustawiona (powinna być równa 0)
         //2. czy opis akcesorium zawiera kolor akcesorium
+
+
+        //testy do napisania 28.10
+        //1. puste zamowienie ma sume zamówienia równą 0
+        //2. Dodanie dwa razy tego samego produktu do zamówienia nie dodaje pozycji
+        //   zwiększa jego ilość i wartość zamówienia jest poprawna 
+        //3. Klasa rzuca wyjątek jeśli dodamy do zamówienia produkt z ilością <= 0
+        //4. Zamówienie liczy poprawnie sumę wartości dwóch pozycji - jedna z podzespołem, druga z usługą
     }
 }
