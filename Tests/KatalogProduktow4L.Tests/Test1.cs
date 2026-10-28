@@ -102,14 +102,42 @@ namespace KatalogProduktow4L.Tests
         }
         //napisz testy które sprawdzą czy:
         //1. wartosc magazynu dla usługi jest poprawnie ustawiona (powinna być równa 0)
+        [TestMethod]
+        public void WartoscMagazynuDlaUslugi()
+        {
+            //arrange - przygotowujemy obiekt usługi
+            var usluga = new Usluga { Nazwa = "Usluga1", Cena = 20.0, Kategoria = "Kategoria3", Ilosc = 0 };
+            //act - sciagam wartosc magazynu do zmiennej
+            var wartoscMagazynu = usluga.WartoscMagazynu;
+            //assert - sprawdzam czy wartosc magazynu jest równa 0
+            Assert.AreEqual(0, wartoscMagazynu, "Wartość magazynu dla usługi powinna być równa 0.");
+        }
         //2. czy opis akcesorium zawiera kolor akcesorium
-
+        [TestMethod]
+        public void CzyOpisAkcesoriumZawieraKolor()
+        {
+            //arrange - przygotowujemy obiekt akcesorium
+            string kolor = "Czerwony";
+            var akcesorium = new Akcesorium
+            {
+                Nazwa = "Akcesorium1",
+                Cena = 15.0,
+                Kategoria = "Kategoria2",
+                Ilosc = 3,
+                Kolor = kolor
+            };
+            //act - sciagam opis do zmiennej
+            var opis = akcesorium.Opis();
+            //assert - sprawdzam czy opis zawiera kolor akcesorium
+            StringAssert.Contains(opis, kolor, "Opis akcesorium powinien zawierać kolor akcesorium.");
+        }
 
         //testy do napisania 28.10
         //1. puste zamowienie ma sume zamówienia równą 0
         //2. Dodanie dwa razy tego samego produktu do zamówienia nie dodaje pozycji
         //   zwiększa jego ilość i wartość zamówienia jest poprawna 
         //3. Klasa rzuca wyjątek jeśli dodamy do zamówienia produkt z ilością <= 0
+        //   wykorzystaj Assert.ThrowsExacly<ArgumentException> i sprawdź czy komunikat wyjątku jest poprawny
         //4. Zamówienie liczy poprawnie sumę wartości dwóch pozycji - jedna z podzespołem, druga z usługą
     }
 }
