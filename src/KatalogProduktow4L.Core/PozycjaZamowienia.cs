@@ -6,12 +6,14 @@ namespace KatalogProduktow4L.Core
 {
     public class PozycjaZamowienia
     {
-        //każda pozycja składa się z produktu i jego ilości
-        public Produkt Produkt { get; set; }
+        //każda pozycja składa się z produktu lub zestawu
+        //(oba implementują interfejs IWyceniany)
+        //oraz ilości tej pozycji w zamówieniu
+        public IWyceniany Produkt { get; set; }
         public int Ilosc { get; private set; }
 
         //konstruktor przyjmuje produkt i jego ilość
-        public PozycjaZamowienia(Produkt produkt, int ilosc)
+        public PozycjaZamowienia(IWyceniany produkt, int ilosc)
         {
             Produkt = produkt;
             Ilosc = ilosc;

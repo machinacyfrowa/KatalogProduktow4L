@@ -4,7 +4,7 @@ using System.Text;
 
 namespace KatalogProduktow4L.Core
 {
-    public class Produkt
+    public class Produkt : IWyceniany, IComparable<Produkt>
     {
         public string Nazwa { get; set; }
         public double Cena { get; set; }
@@ -49,6 +49,18 @@ namespace KatalogProduktow4L.Core
         {
             return $"Nazwa: {Nazwa}, Cena: {Cena}, Kategoria: {Kategoria}, " +
                 $"Ilość: {Ilosc}, Wartość magazynu: {WartoscMagazynu}";
+        }
+        /// <summary>
+        /// Just for fun implementacja IComparable dla naszego produktu pozwalająca porównywac dwa produkty ze sobą
+        /// </summary>
+        /// <param name="other"></param>
+        /// <returns></returns>
+        public int CompareTo(Produkt? other)
+        {
+            //jeśli drugi obiekt jest null, to ten obiekt jest większy (bo 1 > 0)
+            if (other == null) return 1;
+            //w innym wypadku zwracamy wynik porównania cen produktów
+            return this.Cena.CompareTo(other.Cena);
         }
     }
 }
