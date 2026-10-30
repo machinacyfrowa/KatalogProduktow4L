@@ -51,7 +51,7 @@ Produkt.SprawdzCeny(produkty);
 //nowy test - dziedziczenie i nadpisanie funkcji
 //uwaga lista jest typu Produkt ale moze przechowywac
 //obiekty klas dziedziczacych po klasie Produkt
-var produktyDziedziczone = new List<Produkt>
+List<Produkt> produktyDziedziczone = new List<Produkt>
 {
     new Produkt { Nazwa = "Produkt1", Cena = 10.0, Kategoria = "Kategoria1", Ilosc = 5 },
     new Podzespol { Nazwa = "Podzespol1", Cena = 25.0, Kategoria = "Kategoria2", Ilosc = 2, Producent = "Producent1" },
@@ -63,3 +63,8 @@ foreach (var produkt in produktyDziedziczone)
 {
     Console.WriteLine(produkt.Opis());
 }
+//to działa bo wszystkie klasy dziedziczą po Produkt, a ten z kolei ma compareTo z intefejsu
+//, więc możemy posortować listę produktów dziedziczonych
+produktyDziedziczone.Sort();
+//posortujmy produkty dziedziczone alfabetycznie po nazwie
+var produktyAlfabetycznie = produktyDziedziczone.OrderBy(p => p.Nazwa).ToList();
