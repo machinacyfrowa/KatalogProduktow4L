@@ -23,8 +23,12 @@
             </Picker>
 			<Label x:Name="errorLabel" TextColor="Red" IsVisible="False" />
 			<Button Text="Dodaj produkt" Clicked="DodajProdukt_Clicked" />
-			<!-- // dzisiejsze dodawanie -->
+			<!-- ilosc znalezionych produktów -->
+            <Label x:Name="iloscLabel" Text="Ilość produktów: 0" />
             <CollectionView x:Name="productsCollectionView" ItemsSource="{Binding widoczneProdukty}" SelectionMode="Single">
+                <CollectionView.EmptyView>
+                    <Label Text="Brak produktów do wyświetlenia."/>
+                </CollectionView.EmptyView>
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
 

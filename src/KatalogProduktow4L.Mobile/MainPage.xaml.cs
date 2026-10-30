@@ -30,6 +30,7 @@ namespace KatalogProduktow4L.Mobile
             {
                 widoczneProdukty.Add(produkt);
             }
+            iloscLabel.Text = $"Ilość produktów: {widoczneProdukty.Count}";
         }
         private void Button_Clicked(object sender, EventArgs e)
         {
