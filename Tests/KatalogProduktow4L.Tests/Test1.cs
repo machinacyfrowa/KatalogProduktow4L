@@ -151,5 +151,34 @@ namespace KatalogProduktow4L.Tests
             StringAssert.Contains(ex.Message, "Ilość musi być większa od zera.", "Dodanie produktu z ilością <= 0 powinno rzucić wyjątek ArgumentException.");
         }
         //4. Zamówienie liczy poprawnie sumę wartości dwóch pozycji - jedna z podzespołem, druga z usługą
+
+        //szybki test wyszukiwarki produktów w liście - szukamy produktów po nazwie i sprawdzamy czy wynik jest poprawny
+        [TestMethod]
+        public void SzukajProduktowPoNazwie()
+        {
+            // Arrange
+            var produkty = PrzygotujListeProduktów();
+            string szukanaNazwa = "Produkt1"; // szukamy produktów zawierających "Produkt1" w nazwie
+            // Act
+            var znalezioneProdukty = Produkt.Szukaj(produkty, szukanaNazwa);
+            // Assert
+            foreach (var produkt in znalezioneProdukty)
+            {
+                StringAssert.Contains(produkt.Nazwa, szukanaNazwa, $"Znaleziony produkt {produkt.Nazwa} powinien zawierać '{szukanaNazwa}' w nazwie.");
+            }
+        }
+        //sprawdz ile produktów o określonej nazwie jest w liście i porównaj z wynikiem wyszukiwania
+        [TestMethod]
+        public void SzukajProduktowPoNazwie_LiczbaZnalezionychProduktow()
+        {
+            // Arrange
+            var produkty = PrzygotujListeProduktów();
+            string szukanaNazwa = "000"; // szukamy produktów zawierających "000" w nazwie
+            int oczekiwanaLiczbaZnalezionychProduktow = 9; // ponieważ produkty będą miały nazwy Produkt1000, Produkt2000
+            // Act
+            var znalezioneProdukty = Produkt.Szukaj(produkty, szukanaNazwa);
+            // Assert
+            Assert.AreEqual(oczekiwanaLiczbaZnalezionychProduktow, znalezioneProdukty.Count, $"Liczba znalezionych produktów powinna być równa {oczekiwanaLiczbaZnalezionychProduktow}.");
+        }
     }
 }

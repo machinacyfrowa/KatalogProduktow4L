@@ -62,5 +62,22 @@ namespace KatalogProduktow4L.Core
             //w innym wypadku zwracamy wynik porównania cen produktów
             return this.Cena.CompareTo(other.Cena);
         }
+        public static List<Produkt> Szukaj(List<Produkt> produkty, string nazwa)
+        {
+            List<Produkt> znalezioneProdukty = new List<Produkt>();
+            //można pętlą foreach przeszukać listę produktów i dodać do znalezioneProdukty te, które zawierają w nazwie szukany ciąg znaków
+            foreach (var produkt in produkty)
+            {
+                if (produkt.Nazwa.Contains(nazwa, StringComparison.OrdinalIgnoreCase))
+                {
+                    znalezioneProdukty.Add(produkt);
+                }
+            }
+            //alternatywnie można użyć LINQ do wyszukiwania produktów:
+            znalezioneProdukty.Clear(); //czyścimy listę, żeby nie dublować wyników
+            znalezioneProdukty = produkty.Where(p => p.Nazwa.Contains(nazwa, StringComparison.OrdinalIgnoreCase)).ToList();
+            //zwracamy listę znalezionych produktów
+            return znalezioneProdukty;
+        }
     }
 }

@@ -5,18 +5,28 @@ namespace KatalogProduktow4L.Mobile
 {
     public partial class MainPage : ContentPage
     {
-        public ObservableCollection<Produkt> Produkty { get; set; }
+        public readonly List<Produkt> bazaProduktow = new();
+        public ObservableCollection<Produkt> widoczneProdukty { get; set; } = new ObservableCollection<Produkt>();
 
         public MainPage()
         {
-            Produkty = new ObservableCollection<Produkt>
+            bazaProduktow = new List<Produkt>
             {
                 new Produkt { Nazwa = "Produkt1", Cena = 10.0, Kategoria = "Kategoria1", Ilosc = 5 },
                 new Produkt { Nazwa = "Produkt2", Cena = 20.0, Kategoria = "Kategoria2", Ilosc = 3 },
                 new Produkt { Nazwa = "Produkt3", Cena = 15.0, Kategoria = "Kategoria1", Ilosc = 8 }
             };
+            Odswiez();
             InitializeComponent();
             BindingContext = this;
+        }
+        private void Odswiez()
+        {
+            widoczneProdukty.Clear();
+            foreach (var produkt in bazaProduktow)
+            {
+                widoczneProdukty.Add(produkt);
+            }
         }
         private void Button_Clicked(object sender, EventArgs e)
         {
@@ -37,14 +47,16 @@ namespace KatalogProduktow4L.Mobile
                 Kategoria = kategoria,
                 Ilosc = 0 // domyślna ilość
             };
-            Produkty.Add(nowyProdukt);
+            bazaProduktow.Add(nowyProdukt);
+            Odswiez();
         }
         private void UsunProdukt_Clicked(object sender, EventArgs e)
         {
             if (productsCollectionView.SelectedItem is Produkt wybranyProdukt)
             {
-                Produkty.Remove(wybranyProdukt);
+                bazaProduktow.Remove(wybranyProdukt);
             }
+            Odswiez();
         }
     }
 }

@@ -24,7 +24,7 @@
 			<Label x:Name="errorLabel" TextColor="Red" IsVisible="False" />
 			<Button Text="Dodaj produkt" Clicked="DodajProdukt_Clicked" />
 			<!-- // dzisiejsze dodawanie -->
-            <CollectionView x:Name="productsCollectionView" ItemsSource="{Binding Produkty}" SelectionMode="Single">
+            <CollectionView x:Name="productsCollectionView" ItemsSource="{Binding widoczneProdukty}" SelectionMode="Single">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
 
