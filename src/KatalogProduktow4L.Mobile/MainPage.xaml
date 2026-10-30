@@ -9,7 +9,7 @@
             Spacing="25">
 			<!-- wyszukiwanie  z poprzednich zajęć-->
             <Label Text="Wyszukiwanie:" />
-            <Entry x:Name="searchEntry" Placeholder="Wpisz nazwę produktu" />
+            <SearchBar x:Name="nameSearchBar" Placeholder="Wpisz nazwę produktu" TextChanged="nameSearchBar_TextChanged"/>
             <Button Text="Szukaj" Clicked="Button_Clicked" />
 			<!-- dzisiejsze dodawanie -->
 			<Entry x:Name="nazwaEntry" Placeholder="Nazwa produktu" />
