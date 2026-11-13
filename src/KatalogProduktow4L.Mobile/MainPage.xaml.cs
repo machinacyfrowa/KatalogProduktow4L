@@ -21,6 +21,13 @@ namespace KatalogProduktow4L.Mobile
             Odswiez();
             BindingContext = this;
         }
+        //przeciążamy metodę OnAppearing, a
+        //by odświeżyć widoczne produkty za każdym razem, gdy strona się pojawia
+        protected override void OnAppearing()
+        {
+            base.OnAppearing(); //najpierw wykonaj działania bazowe, a potem odśwież widoczne produkty
+            Odswiez();
+        }
         private void Odswiez()
         {
             widoczneProdukty.Clear();
@@ -66,6 +73,22 @@ namespace KatalogProduktow4L.Mobile
         private void nameSearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
             Odswiez();
+        }
+
+        private async void SzczegolyButtonClicked(object sender, EventArgs e)
+        {
+            //sprawdzamy czy mamy wybrany produkt w CollectionView
+            if (productsCollectionView.SelectedItem is Produkt wybranyProdukt)
+            {
+                // Przekazanie wybranego produktu do strony szczegółów
+                // przygotowanie paczki z danymi do przekazania
+                var dane = new Dictionary<string, object>
+                {
+                    { "Produkt", wybranyProdukt }
+                };
+                //wywołanie nawigacji do strony szczegółów z przekazaniem danych
+                await Shell.Current.GoToAsync(nameof(DetailsPage), dane);
+            }
         }
     }
 }

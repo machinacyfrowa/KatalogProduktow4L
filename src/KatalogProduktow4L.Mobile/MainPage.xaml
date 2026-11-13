@@ -42,6 +42,7 @@
                 </CollectionView.ItemTemplate>
             
             </CollectionView>
+            <Button Text="Szczegóły" Clicked="SzczegolyButtonClicked" />
 			<Button Text="Usuń produkt" Clicked="UsunProdukt_Clicked" />
         </VerticalStackLayout>
 		
