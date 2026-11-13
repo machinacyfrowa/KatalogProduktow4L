@@ -4,10 +4,9 @@
              x:Class="KatalogProduktow4L.Mobile.DetailsPage"
              Title="DetailsPage">
     <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
+        <Button Text="Usuń" Clicked="UsunButtonClicked"  
+                WidthRequest="100" HeightRequest="48"
+                BackgroundColor="Red" HorizontalOptions="End"/>
         <Label Text="Nazwa:" />
         <Entry x:Name="NazwaEntry" />
         <Label Text="Cena:" />

@@ -84,7 +84,8 @@ namespace KatalogProduktow4L.Mobile
                 // przygotowanie paczki z danymi do przekazania
                 var dane = new Dictionary<string, object>
                 {
-                    { "Produkt", wybranyProdukt }
+                    { "Produkt", wybranyProdukt },
+                    { "BazaProduktow", bazaProduktow }
                 };
                 //wywołanie nawigacji do strony szczegółów z przekazaniem danych
                 await Shell.Current.GoToAsync(nameof(DetailsPage), dane);
