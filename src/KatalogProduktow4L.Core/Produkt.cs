@@ -1,18 +1,66 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace KatalogProduktow4L.Core
 {
-    public class Produkt : IWyceniany, IComparable<Produkt>
+    public class Produkt : IWyceniany, IComparable<Produkt>, INotifyPropertyChanged
     {
-        public string Nazwa { get; set; }
-        public double Cena { get; set; }
+        private string nazwa;
+        public string Nazwa
+        {
+            get { return nazwa; }
+            set
+            {
+                if (nazwa != value)
+                {
+                    nazwa = value;
+                    Zmiana(nameof(Nazwa));
+                }
+            }
+        }
+        //tu jest faktyczna wartość
+        private double cena;
+        //to jest właściwość, która wywołuje zdarzenie PropertyChanged, gdy zmienia się wartość ceny
+        public double Cena
+        {
+            get { return cena; } //pobieranie ceny bez dalszych działań - bo to nic nie zmienia
+            set
+            {
+                if (cena != value) //jeśli nowa cena nie jest taka jak poprzednia
+                {
+                    cena = value; //zapisz nową cenę
+                    Zmiana(nameof(Cena));//powiadom, że zmieniła się cena
+                }
+            }
+        }
         public string Kategoria { get; set; }
-        public int Ilosc { get; set; }
+        public int ilosc;
+        public int Ilosc
+        {
+            get { return ilosc; }
+            set
+            {
+                if (ilosc != value)
+                {
+                    ilosc = value;
+                    Zmiana(nameof(Ilosc));
+                }
+            }
+        }
         public virtual double WartoscMagazynu
         {
             get { return Cena * Ilosc ; }
+        }
+        //rejestrujemy zdarzenie PropertyChanged, które jest wywoływane,
+        //gdy zmienia się wartość właściwości obiektu
+        public event PropertyChangedEventHandler? PropertyChanged;
+        //funkcja która realnie reaguje na zmianę właściwości obiektu i wywołuje zdarzenie PropertyChanged
+        //i triggeruje powiadomienie o zmianie właściwości
+        protected void Zmiana(string nazwaWlasciwosci)
+        {
+            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nazwaWlasciwosci));
         }
         //funkcja sprawdza czy poprawnie obliczamy wartośc magazynu
         public static void SprawdzWartosc(Produkt p)

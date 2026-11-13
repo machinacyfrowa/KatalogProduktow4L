@@ -23,10 +23,11 @@ namespace KatalogProduktow4L.Mobile
         }
         //przeciążamy metodę OnAppearing, a
         //by odświeżyć widoczne produkty za każdym razem, gdy strona się pojawia
+        //nie jest potrzebne od kiedy mamy INotifyPropertyChanged
         protected override void OnAppearing()
         {
             base.OnAppearing(); //najpierw wykonaj działania bazowe, a potem odśwież widoczne produkty
-            Odswiez();
+            //Odswiez();
         }
         private void Odswiez()
         {
