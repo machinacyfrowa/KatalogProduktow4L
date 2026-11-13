@@ -5,8 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:KatalogProduktow4L.Desktop"
         mc:Ignorable="d"
-        Title="KatalogProduktow4L.Desktop" Height="450" Width="800">
-    <Grid>
-
-    </Grid>
+        Title="KatalogProduktow4L.Desktop" Height="600" Width="800">
+    <StackPanel Margin="20">
+        <TextBlock Text="Katalog produktów" HorizontalAlignment="Center" 
+                   FontSize="24" />
+        <ListBox x:Name="ProduktyListBox" Margin="0,20,0,0" />
+    </StackPanel>
 </Window>

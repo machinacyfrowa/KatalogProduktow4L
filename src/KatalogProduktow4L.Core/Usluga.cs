@@ -8,7 +8,8 @@ namespace KatalogProduktow4L.Core
     {
         //usługa nie ma stanu magazynowego wiec
         public override double WartoscMagazynu => 0;
-
+        public override int Ilosc => 0;
+        public override string ToString() => Opis(); //zwracamy wynik metody Opis() jako reprezentację tekstową obiektu Usluga
         public override string Opis()
         {
             return $"{Nazwa} (usługa), Cena: {Cena:F2}";

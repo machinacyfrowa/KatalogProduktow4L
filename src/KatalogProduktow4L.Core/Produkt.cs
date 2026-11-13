@@ -37,7 +37,7 @@ namespace KatalogProduktow4L.Core
         }
         public string Kategoria { get; set; }
         public int ilosc;
-        public int Ilosc
+        public virtual int Ilosc
         {
             get { return ilosc; }
             set
