@@ -27,6 +27,8 @@ namespace KatalogProduktow4L.Desktop
                 new Usluga {Nazwa = "Instalacja systemu Windows", Cena = 200, Kategoria = "Usługi"}
             };
             ProduktyListBox.ItemsSource = produkty;
+            LiczbaProduktowTextBlock.Text = produkty.Count.ToString();
+            WartoscProduktowTextBlock.Text = produkty.Sum(p => p.Cena * p.Ilosc).ToString("F2") + "zł";
         }
     }
 }
