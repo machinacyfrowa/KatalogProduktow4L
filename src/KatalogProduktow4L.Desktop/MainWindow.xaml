@@ -6,9 +6,40 @@
         xmlns:local="clr-namespace:KatalogProduktow4L.Desktop"
         mc:Ignorable="d"
         Title="KatalogProduktow4L.Desktop" Height="600" Width="800">
-    <StackPanel Margin="20">
-        <TextBlock Text="Katalog produktów" HorizontalAlignment="Center" 
-                   FontSize="24" />
-        <ListBox x:Name="ProduktyListBox" Margin="0,20,0,0" />
-    </StackPanel>
+    <Grid Margin="20">
+        <Grid.RowDefinitions>
+            <!-- mały wiersz, reszta okna, mały wiersz-->
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <!-- reszta okna, 300px -->
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="300" />
+        </Grid.ColumnDefinitions>
+        <TextBlock Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2"
+                    Text="Katalog produktów" HorizontalAlignment="Center" 
+                   FontSize="24" Margin="0,0,0,20"/>
+        <ListBox Grid.Row="1" Grid.Column="0"
+            x:Name="ProduktyListBox">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <!-- szablon jednego wiersza listy -->
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="{Binding Nazwa}" Width="220" FontWeight="Bold" />
+                        <TextBlock Text="{Binding Kategoria}" Width="120" />
+                        <TextBlock Text="{Binding Cena, StringFormat={}{0:F2}zł}" Width="100" />
+                    </StackPanel>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <StackPanel Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2"
+                    Orientation="Horizontal" Margin="20,0,0,0">
+            <TextBlock Text="Produktów: "/>
+            <TextBlock x:Name="LiczbaProduktowTextBlock" FontWeight="Bold"/>
+            <TextBlock Text=" | Wartość magazynu: "/>
+            <TextBlock x:Name="WartoscProduktowTextBlock" FontWeight="Bold"/>
+        </StackPanel>
+    </Grid>
 </Window>

@@ -75,7 +75,7 @@ namespace KatalogProduktow4L.Tests
             var produkty = PrzygotujListeProduktów();
             // Act
             int licznik = 0;
-            foreach(var produkt in produkty)
+            foreach (var produkt in produkty)
             {
                 if (produkt.Cena > 0)
                 {
@@ -94,8 +94,14 @@ namespace KatalogProduktow4L.Tests
         {
             //arrange - przygotowujemy obiekt podzespołu
             string nazwaProducenta = "Producent1";
-            var podzespol = new Podzespol { Nazwa = "Podzespol1", Cena = 25.0, 
-                Kategoria = "Kategoria2", Ilosc = 2, Producent = nazwaProducenta };
+            var podzespol = new Podzespol
+            {
+                Nazwa = "Podzespol1",
+                Cena = 25.0,
+                Kategoria = "Kategoria2",
+                Ilosc = 2,
+                Producent = nazwaProducenta
+            };
             //act - sciagam opis do zmiennej
             var opis = podzespol.Opis();
             //assert - sprawdzam czy opis zawiera nazwę producenta
@@ -179,6 +185,38 @@ namespace KatalogProduktow4L.Tests
             var znalezioneProdukty = Produkt.Szukaj(produkty, szukanaNazwa);
             // Assert
             Assert.AreEqual(oczekiwanaLiczbaZnalezionychProduktow, znalezioneProdukty.Count, $"Liczba znalezionych produktów powinna być równa {oczekiwanaLiczbaZnalezionychProduktow}.");
+        }
+        //TODO: dwa tesy
+        //1. Sprawdz czy dla listy mieszanej towarów i usług,
+        // funkcja WartoscMagazynu zwraca poprawną sumę wartości magazynu ( z pominieciem uslug)
+        //2. Czy pusty magazyn zwraca wartosc magazynu równą 0
+        [TestMethod]
+        public void WartoscMagazynuDlaListyMieszanej()
+        {
+            // Arrange
+            var produkty = new List<Produkt>
+            {
+                new Podzespol { Nazwa = "Procesor", Cena = 100, Kategoria = "Podzespoły", Ilosc = 5 },
+                new Akcesorium { Nazwa = "Myszka", Cena = 50, Kategoria = "Akcesoria", Ilosc = 10 },
+                new Usluga { Nazwa = "Instalacja systemu", Cena = 200, Kategoria = "Usługi" }
+            };
+            double oczekiwanaWartoscMagazynu = (100 * 5) + (50 * 10); // Usługa nie powinna być uwzględniona
+            // Act
+            double wartoscMagazynu = Magazyn.WartoscMagazynu(produkty);
+            // Assert
+            Assert.AreEqual(oczekiwanaWartoscMagazynu, wartoscMagazynu, "Wartość magazynu powinna być równa sumie wartości towarów, z pominięciem usług.");
+        }
+
+        [TestMethod]
+        public void WartoscMagazynuDlaPustejListy()
+        {
+            // Arrange
+            var produkty = new List<Produkt>();
+            double oczekiwanaWartoscMagazynu = 0;
+            // Act
+            double wartoscMagazynu = Magazyn.WartoscMagazynu(produkty);
+            // Assert
+            Assert.AreEqual(oczekiwanaWartoscMagazynu, wartoscMagazynu, "Wartość magazynu dla pustej listy powinna być równa 0.");
         }
     }
 }
