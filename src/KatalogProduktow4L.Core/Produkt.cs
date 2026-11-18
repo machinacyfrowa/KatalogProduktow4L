@@ -53,6 +53,8 @@ namespace KatalogProduktow4L.Core
         {
             get { return Cena * Ilosc ; }
         }
+        //publiczna właściwość, która wywołuje metodę Opis
+        public string OpisProduktu => Opis();
         //rejestrujemy zdarzenie PropertyChanged, które jest wywoływane,
         //gdy zmienia się wartość właściwości obiektu
         public event PropertyChangedEventHandler? PropertyChanged;
