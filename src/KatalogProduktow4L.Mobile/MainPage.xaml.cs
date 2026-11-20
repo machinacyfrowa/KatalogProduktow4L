@@ -5,6 +5,7 @@ namespace KatalogProduktow4L.Mobile
 {
     public partial class MainPage : ContentPage
     {
+        bool produktyWczytane = false;
         private readonly List<Produkt> bazaProduktow = new();
         public ObservableCollection<Produkt> widoczneProdukty { get; set; } = new ObservableCollection<Produkt>();
 
@@ -25,17 +26,21 @@ namespace KatalogProduktow4L.Mobile
         //przeciążamy metodę OnAppearing, a
         //by odświeżyć widoczne produkty za każdym razem, gdy strona się pojawia
         //nie jest potrzebne od kiedy mamy INotifyPropertyChanged
-        protected override void OnAppearing()
+        protected async override void OnAppearing()
         {
             base.OnAppearing(); //najpierw wykonaj działania bazowe, a potem odśwież widoczne produkty
-            //Odswiez();
+            Odswiez();
+            if(!produktyWczytane)
+            {
+                //wczytaj bazę produktów z pliku
+                var produktyZPliku = await MagazynPlikowy.WczytajAsync();
+                bazaProduktow.AddRange(produktyZPliku);
+                produktyWczytane = true;
+            }
+            Odswiez();
         }
         private async void Odswiez()
         {
-            //wyczyść bazę produktów i wczytaj ją ponownie z pliku
-            bazaProduktow.Clear();
-            bazaProduktow.AddRange(await MagazynPlikowy.WczytajAsync());
-
             widoczneProdukty.Clear();
             string kryteria = nameSearchBar.Text ?? string.Empty;
             List<Produkt> znalezioneProdukty = Produkt.Szukaj(bazaProduktow, kryteria);
@@ -44,6 +49,11 @@ namespace KatalogProduktow4L.Mobile
                 widoczneProdukty.Add(produkt);
             }
             iloscLabel.Text = $"Ilość produktów: {widoczneProdukty.Count}";
+            //zapisujemy bazę produktów do pliku
+            if(produktyWczytane)
+            {
+                await MagazynPlikowy.ZapiszAsync(bazaProduktow);
+            }
         }
         private void Button_Clicked(object sender, EventArgs e)
         {
