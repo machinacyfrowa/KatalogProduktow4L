@@ -50,6 +50,7 @@
             <TextBlock x:Name="LiczbaProduktowTextBlock" FontWeight="Bold"/>
             <TextBlock Text=" | Wartość magazynu: "/>
             <TextBlock x:Name="WartoscProduktowTextBlock" FontWeight="Bold"/>
+            <!--<Button Content="Drugie okno" Margin="10" Click="Button_Click" />-->
         </StackPanel>
     </Grid>
 </Window>

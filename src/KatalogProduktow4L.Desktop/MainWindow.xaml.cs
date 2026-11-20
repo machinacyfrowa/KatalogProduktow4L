@@ -30,5 +30,16 @@ namespace KatalogProduktow4L.Desktop
             LiczbaProduktowTextBlock.Text = produkty.Count.ToString();
             WartoscProduktowTextBlock.Text = produkty.Sum(p => p.Cena * p.Ilosc).ToString("F2") + "zł";
         }
+        /// <summary>
+        /// Ta funkcja powstała na chwile tylko po to żeby pokazać wam dockpanel w czystym oknie
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            //uruchom drugie okno - DockPanelDemo
+            DockPanelDemo dockPanelDemo = new DockPanelDemo();
+            dockPanelDemo.Show();
+        }
     }
 }
