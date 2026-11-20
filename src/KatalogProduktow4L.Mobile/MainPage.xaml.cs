@@ -20,6 +20,7 @@ namespace KatalogProduktow4L.Mobile
             InitializeComponent();
             Odswiez();
             BindingContext = this;
+            nameSearchBar.Text = Preferences.Default.Get("ostatnieWyszukiwanie", string.Empty);
         }
         //przeciążamy metodę OnAppearing, a
         //by odświeżyć widoczne produkty za każdym razem, gdy strona się pojawia
@@ -73,6 +74,9 @@ namespace KatalogProduktow4L.Mobile
 
         private void nameSearchBar_TextChanged(object sender, TextChangedEventArgs e)
         {
+            //zapisuje nam do preferencji ostatnie wyszukiwanie,
+            //aby przy ponownym uruchomieniu aplikacji można było je przywrócić
+            Preferences.Default.Set("ostatnieWyszukiwanie", nameSearchBar.Text ?? string.Empty);
             Odswiez();
         }
 

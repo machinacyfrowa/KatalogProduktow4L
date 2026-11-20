@@ -49,6 +49,22 @@ namespace KatalogProduktow4L.Core
                 }
             }
         }
+        private bool dostepnosc;
+        public bool Dostepnosc
+        {
+            get
+            {
+                return dostepnosc;
+            }
+            set
+            {
+                if (dostepnosc != value)
+                {
+                    dostepnosc = value;
+                    Zmiana(nameof(Dostepnosc));
+                }
+            }
+        }
         public virtual double WartoscMagazynu
         {
             get { return Cena * Ilosc ; }

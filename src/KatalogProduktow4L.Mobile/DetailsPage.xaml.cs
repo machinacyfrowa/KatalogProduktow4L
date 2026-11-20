@@ -22,6 +22,7 @@ public partial class DetailsPage : ContentPage, IQueryAttributable
         NazwaEntry.Text = produkt.Nazwa;
         CenaEntry.Text = produkt.Cena.ToString();
         IloscEntry.Text = produkt.Ilosc.ToString();
+        DostepnoscSwitch.IsToggled = produkt.Dostepnosc;
         //KategoriaPicker.SelectedItem = produkt.Kategoria;
     }
 

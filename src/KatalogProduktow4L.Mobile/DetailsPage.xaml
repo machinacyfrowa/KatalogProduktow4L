@@ -13,6 +13,8 @@
         <Entry x:Name="CenaEntry" />
         <Label Text="Ilość:" />
         <Entry x:Name="IloscEntry" />
+        <Label Text="Dostępność:" />
+        <Switch x:Name="DostepnoscSwitch" />
         <!--
         <Label Text="Kategoria:" />
         <Picker x:Name="KategoriaPicker">
