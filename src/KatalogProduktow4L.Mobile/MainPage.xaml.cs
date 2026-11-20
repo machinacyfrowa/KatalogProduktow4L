@@ -10,13 +10,13 @@ namespace KatalogProduktow4L.Mobile
 
         public MainPage()
         {
-            bazaProduktow = new List<Produkt>
-            {
-                new Produkt { Nazwa = "Produkt1", Cena = 10.0, Kategoria = "Kategoria1", Ilosc = 5 },
-                new Produkt { Nazwa = "Produkt2", Cena = 20.0, Kategoria = "Kategoria2", Ilosc = 3 },
-                new Produkt { Nazwa = "Produkt3", Cena = 15.0, Kategoria = "Kategoria1", Ilosc = 8 }
-            };
-           
+            //bazaProduktow = new List<Produkt>
+            //{
+            //    new Produkt { Nazwa = "Produkt1", Cena = 10.0, Kategoria = "Kategoria1", Ilosc = 5 },
+            //    new Produkt { Nazwa = "Produkt2", Cena = 20.0, Kategoria = "Kategoria2", Ilosc = 3 },
+            //    new Produkt { Nazwa = "Produkt3", Cena = 15.0, Kategoria = "Kategoria1", Ilosc = 8 }
+            //};
+            
             InitializeComponent();
             Odswiez();
             BindingContext = this;
@@ -30,8 +30,12 @@ namespace KatalogProduktow4L.Mobile
             base.OnAppearing(); //najpierw wykonaj działania bazowe, a potem odśwież widoczne produkty
             //Odswiez();
         }
-        private void Odswiez()
+        private async void Odswiez()
         {
+            //wyczyść bazę produktów i wczytaj ją ponownie z pliku
+            bazaProduktow.Clear();
+            bazaProduktow.AddRange(await MagazynPlikowy.WczytajAsync());
+
             widoczneProdukty.Clear();
             string kryteria = nameSearchBar.Text ?? string.Empty;
             List<Produkt> znalezioneProdukty = Produkt.Szukaj(bazaProduktow, kryteria);
