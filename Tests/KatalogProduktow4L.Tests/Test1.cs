@@ -1,5 +1,6 @@
 ﻿using KatalogProduktow4L.Core;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using System.Security.Cryptography;
 
 namespace KatalogProduktow4L.Tests
 {
@@ -172,8 +173,35 @@ namespace KatalogProduktow4L.Tests
 
         //testy do napisania 28.10
         //1. puste zamowienie ma sume zamówienia równą 0
+        [TestMethod]
+        public void PusteZamowienieMaSumeZamowieniaRownaZero()
+        {
+            // Arrange
+            var zamowienie = new Zamowienie();
+            // Act
+            double sumaZamowienia = zamowienie.WartoscZamowienia;
+            // Assert
+            Assert.AreEqual(0, sumaZamowienia, "Puste zamówienie powinno mieć sumę zamówienia równą 0.");
+        }
         //2. Dodanie dwa razy tego samego produktu do zamówienia nie dodaje pozycji
         //   zwiększa jego ilość i wartość zamówienia jest poprawna 
+        [TestMethod]
+        public void DodanieDwaRazyTegoSamegoProduktuZwiekszaIlosc()
+        {
+            // Arrange
+            var zamowienie = new Zamowienie();
+            var produkt = PrzygotujProdukt();
+            int iloscDodanaPierwszyRaz = 2;
+            int iloscDodanaDrugiRaz = 3;
+            // Act
+            zamowienie.Dodaj(produkt, iloscDodanaPierwszyRaz);
+            zamowienie.Dodaj(produkt, iloscDodanaDrugiRaz);
+            // Assert
+            Assert.AreEqual(1, zamowienie.Pozycje.Count, "Dodanie tego samego produktu dwa razy powinno skutkować jedną pozycją w zamówieniu.");
+            Assert.AreEqual(5, zamowienie.Pozycje[0].Ilosc, "Ilość produktu w zamówieniu powinna być sumą ilości dodanych dwukrotnie.");
+            double oczekiwanaWartoscZamowienia = produkt.Cena * (iloscDodanaPierwszyRaz + iloscDodanaDrugiRaz);
+            Assert.AreEqual(oczekiwanaWartoscZamowienia, zamowienie.WartoscZamowienia, "Wartość zamówienia powinna być poprawnie obliczona po dodaniu tego samego produktu dwa razy.");
+        }
         //3. Klasa rzuca wyjątek jeśli dodamy do zamówienia produkt z ilością <= 0
         //   wykorzystaj var ex = Assert.Throws<Exception> i sprawdź czy wyjątek jest typu ArgumentException
         //   ex.Message powinien zawierać tekst "Ilość musi być większa od zera."
@@ -188,7 +216,20 @@ namespace KatalogProduktow4L.Tests
             StringAssert.Contains(ex.Message, "Ilość musi być większa od zera.", "Dodanie produktu z ilością <= 0 powinno rzucić wyjątek ArgumentException.");
         }
         //4. Zamówienie liczy poprawnie sumę wartości dwóch pozycji - jedna z podzespołem, druga z usługą
-
+        [TestMethod]
+        public void ZamowienieSumujePodzespolIUsluge()
+        {
+            // Arrange
+            var zamowienie = new Zamowienie();
+            var podzespol = new Podzespol { Nazwa = "Podzespol1", Cena = 100, Kategoria = "Kategoria1", Ilosc = 2, Producent = "Producent1" };
+            var usluga = new Usluga { Nazwa = "Usluga1", Cena = 50, Kategoria = "Kategoria2" };
+            // Act
+            zamowienie.Dodaj(podzespol, 2); // dodajemy 2 sztuki podzespołu
+            zamowienie.Dodaj(usluga, 1); // dodajemy usługę
+            double oczekiwanaWartoscZamowienia = (podzespol.Cena * 2) + (usluga.Cena * 1);
+            // Assert
+            Assert.AreEqual(oczekiwanaWartoscZamowienia, zamowienie.WartoscZamowienia, "Suma wartości zamówienia powinna być poprawnie obliczona dla podzespołu i usługi.");
+        }
         //szybki test wyszukiwarki produktów w liście - szukamy produktów po nazwie i sprawdzamy czy wynik jest poprawny
         [TestMethod]
         public void SzukajProduktowPoNazwie()
