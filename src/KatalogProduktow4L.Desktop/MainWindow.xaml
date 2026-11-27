@@ -43,36 +43,57 @@
             </Grid.RowDefinitions>
             <GroupBox Grid.Row="0" Header="Szczegóły produktu" 
                       DataContext="{Binding SelectedItem, ElementName=ProduktyListBox}">
-                <StackPanel>
-                    <TextBlock Text="Nazwa:" FontSize="18" FontWeight="Bold"/>
-                    <TextBox x:Name="NazwaTextBox" Text="{Binding Nazwa}" />
-                    <TextBlock Text="Cena:" FontSize="18" FontWeight="Bold"/>
-                    <TextBox x:Name="CenaTextBox" Text="{Binding Cena, StringFormat={}{0:F2}zł}" />
-                    <TextBlock Text="Kategoria:" FontSize="18" FontWeight="Bold"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                        <RowDefinition Height="Auto" />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Row="0" Grid.Column="0" Text="Nazwa:"/>
+                    <TextBox x:Name="NazwaTextBox" Grid.Row="0" Grid.Column="1" Text="{Binding Nazwa}" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Cena:"  Margin="0,5,0,0"/>
+                    <TextBox x:Name="CenaTextBox" Grid.Row="1" Grid.Column="1" Text="{Binding Cena, StringFormat={}{0:F2}zł}" Margin="0,5,0,0" />
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Ilość:"  Margin="0,5,0,0"/>
+                    <TextBox x:Name="IloscTextBox" Grid.Row="2" Grid.Column="1" Text="{Binding Ilosc}" Margin="0,5,0,0"/>
+                    <TextBlock Grid.Row="3" Grid.Column="0" Text="Kategoria:"  Margin="0,5,0,0"/>
                     <!-- to jeszcze nie działa prawidłowo -->
-                    <ComboBox x:Name="KategoriaComboBox">
+                    <ComboBox x:Name="KategoriaComboBox" Grid.Row="3" Grid.Column="1" Margin="0,5,0,0">
                         <ComboBoxItem Content="Elektronika" />
                         <ComboBoxItem Content="Odzież" />
                         <ComboBoxItem Content="Jedzenie" />
-                    </ComboBox> 
+                    </ComboBox>
                     <!-- inne przydatne kontrolki -->
-                    <CheckBox x:Name="PromocjaCheckBox" Content="Promocja" />
-                    <TextBlock Text="Data dostawy:" FontSize="18" FontWeight="Bold"/>
-                    <DatePicker x:Name="DataDostawyDatePicker" />
-                    <TextBlock Text="Sposób dostawy:" FontSize="18" FontWeight="Bold"/>
-                    <RadioButton x:Name="DostawaKurierRadioButton" Content="Kurier" GroupName="SposobDostawy"/>
-                    <RadioButton x:Name="DostawaPocztaRadioButton" Content="Poczta" GroupName="SposobDostawy"/>
+                    <!-- tylko zeby pokazać - nie ląduja w finalnym projekcie
+                    <CheckBox x:Name="PromocjaCheckBox" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="Promocja" Margin="0,5,0,0" />
+                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Data dostawy:" FontSize="18" FontWeight="Bold" Margin="0,5,0,0"/>
+                    <DatePicker x:Name="DataDostawyDatePicker" Grid.Row="4" Grid.Column="1" Margin="0,5,0,0" />
+                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Sposób dostawy:" FontSize="18" FontWeight="Bold" Margin="0,5,0,0"/>
+                    <StackPanel Grid.Row="5" Grid.Column="1" Margin="0,5,0,0">
+                        <RadioButton x:Name="DostawaKurierRadioButton" Content="Kurier" GroupName="SposobDostawy"/>
+                        <RadioButton x:Name="DostawaPocztaRadioButton" Content="Poczta" GroupName="SposobDostawy"/>
+                   
+                    </StackPanel> -->
                     <!-- w zależności od typu produktu -->
                     <!-- collapsed nie będzie widoczny dopóki nie włączycie go z kodu -->
-                    <StackPanel x:Name="KolorStackPanel" Visibility="Collapsed">
+                    <StackPanel x:Name="KolorStackPanel" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Visibility="Collapsed" Margin="0,5,0,0">
                         <TextBlock Text="Kolor:" FontSize="18" FontWeight="Bold"/>
-                        <TextBox x:Name="KolorTextBox" />
+                        <TextBox x:Name="KolorTextBox" Margin="5,0,0,0" />
                     </StackPanel>
                     <!-- te wartości są tylko do odczytu -->
-                    <TextBlock Text="{Binding WartoscMagazynu, StringFormat=Wartość magazynu: {0:F2}zł}" 
+                    <TextBlock Grid.Row="7" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding WartoscMagazynu, StringFormat=Wartość magazynu: {0:F2}zł}" 
                                FontSize="14" Margin="0,5,0,0"/>
-                    <TextBlock Text="{Binding OpisProduktu}"/>
-                </StackPanel>
+                    <TextBlock Grid.Row="8" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding OpisProduktu}" Margin="0,5,0,0"/>
+                </Grid>
             </GroupBox>
             <GroupBox Grid.Row="1" Header="Nowy produkt:">
                 <Grid>
