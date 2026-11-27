@@ -52,12 +52,11 @@ namespace KatalogProduktow4L.Tests
         {
             // Arrange
             var produkt = PrzygotujProdukt();
-            // Ustawiamy cenę na wartość ujemną
-            produkt.Cena *= -1;
-            // Act
-            bool isCenaDodatnia = produkt.Cena >= 0;
-            // Assert
-            Assert.IsFalse(isCenaDodatnia, "Cena produktu powinna być nieujemna.");
+
+            // Act & Assert
+            var ex = Assert.ThrowsExactly<ArgumentException>(() => produkt.Cena = produkt.Cena * -1);
+            StringAssert.Contains(ex.Message, "Cena nie może być ujemna.", 
+                "Ustawienie ujemnej ceny powinno rzucić wyjątek ArgumentException.");
         }
         [TestMethod]
         public void PoliczWszystkieProdukty()

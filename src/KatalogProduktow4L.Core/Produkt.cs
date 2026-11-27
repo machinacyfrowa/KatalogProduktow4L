@@ -28,6 +28,10 @@ namespace KatalogProduktow4L.Core
             get { return cena; } //pobieranie ceny bez dalszych działań - bo to nic nie zmienia
             set
             {
+                if(value < 0) //jeśli cena jest ujemna
+                {
+                    throw new ArgumentException("Cena nie może być ujemna."); //wyrzuć wyjątek
+                }
                 if (cena != value) //jeśli nowa cena nie jest taka jak poprzednia
                 {
                     cena = value; //zapisz nową cenę
