@@ -67,10 +67,11 @@
                     <TextBox x:Name="IloscTextBox" Grid.Row="2" Grid.Column="1" Text="{Binding Ilosc}" Margin="0,5,0,0"/>
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Kategoria:"  Margin="0,5,0,0"/>
                     <!-- to jeszcze nie działa prawidłowo -->
-                    <ComboBox x:Name="KategoriaComboBox" Grid.Row="3" Grid.Column="1" Margin="0,5,0,0">
-                        <ComboBoxItem Content="Elektronika" />
-                        <ComboBoxItem Content="Odzież" />
-                        <ComboBoxItem Content="Jedzenie" />
+                    <ComboBox x:Name="KategoriaComboBox" Grid.Row="3" Grid.Column="1" Margin="0,5,0,0"
+                              SelectedValuePath="Content" SelectedValue="{Binding Kategoria}">
+                        <ComboBoxItem Content="Podzespoły" />
+                        <ComboBoxItem Content="Akcesoria" />
+                        <ComboBoxItem Content="Usługi" />
                     </ComboBox>
                     <!-- inne przydatne kontrolki -->
                     <!-- w zależności od typu produktu -->

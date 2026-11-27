@@ -39,7 +39,19 @@ namespace KatalogProduktow4L.Core
                 }
             }
         }
-        public string Kategoria { get; set; }
+        private string kategoria;
+        public string Kategoria
+        {
+            get { return kategoria; }
+            set
+            {
+                if (kategoria != value)
+                {
+                    kategoria = value;
+                    Zmiana(nameof(Kategoria));
+                }
+            }
+        }
         private int ilosc;
         public virtual int Ilosc
         {
