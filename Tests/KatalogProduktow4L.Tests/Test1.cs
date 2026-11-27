@@ -88,6 +88,37 @@ namespace KatalogProduktow4L.Tests
         //Robimy dwa dodatkowe testy:
         //1. Sprawdzamy czy są dokładnie 3 kategorie produktów w liście
         //2. Sprawdzamy czy w kategorii "Kategoria1" jest dokładnie 5 produktów
+        List<Produkt> PrzygotujStalaListe()
+        {
+            return new List<Produkt>
+            {
+                new Produkt { Nazwa = "Produkt1", Cena = 10.0, Kategoria = "Kategoria1", Ilosc = 5 },
+                new Produkt { Nazwa = "Produkt2", Cena = 20.0, Kategoria = "Kategoria1", Ilosc = 3 },
+                new Produkt { Nazwa = "Produkt3", Cena = 15.0, Kategoria = "Kategoria2", Ilosc = 7 },
+                new Produkt { Nazwa = "Produkt4", Cena = 25.0, Kategoria = "Kategoria2", Ilosc = 2 },
+                new Produkt { Nazwa = "Produkt5", Cena = 30.0, Kategoria = "Kategoria3", Ilosc = 4 }
+            };
+        }
+        [TestMethod]
+        public void ListaMaTrzyKategorie()
+        {
+            // Arrange
+            var produkty = PrzygotujStalaListe();
+            // Act
+            var kategorie = produkty.Select(p => p.Kategoria).Distinct().ToList();
+            // Assert
+            Assert.AreEqual(3, kategorie.Count, "Lista powinna zawierać dokładnie 3 różne kategorie produktów.");
+        }
+        [TestMethod]
+        public void Kategoria1MaDokladnie5Produktow()
+        {
+            // Arrange
+            var produkty = PrzygotujStalaListe();
+            // Act
+            var produktyKategoria1 = produkty.Where(p => p.Kategoria == "Kategoria1").ToList();
+            // Assert
+            Assert.AreEqual(2, produktyKategoria1.Count, "W kategorii 'Kategoria1' powinny być dokładnie 2 produkty.");
+        }
         //Najpierw napiszcie sobie funkcję pomocniczą która przygotuje wam dane do testów
         [TestMethod]
         public void CzyOpisPodzespoluZawieraProducenta()
