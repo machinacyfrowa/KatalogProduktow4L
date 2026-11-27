@@ -61,8 +61,12 @@
                     </Grid.ColumnDefinitions>
                     <TextBlock Grid.Row="0" Grid.Column="0" Text="Nazwa:"/>
                     <TextBox x:Name="NazwaTextBox" Grid.Row="0" Grid.Column="1" Text="{Binding Nazwa}" />
-                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Cena:"  Margin="0,5,0,0"/>
-                    <TextBox x:Name="CenaTextBox" Grid.Row="1" Grid.Column="1" Text="{Binding Cena, StringFormat={}{0:F2}zł}" Margin="0,5,0,0" />
+                    <TextBlock Grid.Row="1" Grid.Column="0" Text="Cena (zł):"  Margin="0,5,0,0"/>
+                    <TextBox x:Name="CenaTextBox" Grid.Row="1" Grid.Column="1" 
+                             Text="{Binding Cena, StringFormat=F2, ValidatesOnExceptions=True}"
+                             ToolTip="{Binding (Validation.Errors)[0].ErrorContent, RelativeSource={RelativeSource Self}}"
+                             Margin="0,5,0,0"
+                             />
                     <TextBlock Grid.Row="2" Grid.Column="0" Text="Ilość:"  Margin="0,5,0,0"/>
                     <TextBox x:Name="IloscTextBox" Grid.Row="2" Grid.Column="1" Text="{Binding Ilosc}" Margin="0,5,0,0"/>
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Kategoria:"  Margin="0,5,0,0"/>
@@ -110,7 +114,7 @@
                     <TextBlock Grid.Row="1" Grid.Column="0" Text="Nazwa:" Margin="0,5,0,0"/>
                     <TextBox x:Name="NowyNazwaTextBox" Grid.Row="1" Grid.Column="1"
                              Margin="0,5,0,0"/>
-                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Cena:" Margin="0,5,0,0"/>
+                    <TextBlock Grid.Row="2" Grid.Column="0" Text="Cena (zł):" Margin="0,5,0,0"/>
                     <TextBox x:Name="NowyCenaTextBox" Grid.Row="2" Grid.Column="1" Margin="0,5,0,0" />
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Ilość:" Margin="0,5,0,0"/>
                     <TextBox x:Name="NowyIloscTextBox" Grid.Row="3" Grid.Column="1" Margin="0,5,0,0"/>
