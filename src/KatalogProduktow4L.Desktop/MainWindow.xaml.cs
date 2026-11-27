@@ -28,7 +28,7 @@ namespace KatalogProduktow4L.Desktop
             };
             ProduktyListBox.ItemsSource = produkty;
             LiczbaProduktowTextBlock.Text = produkty.Count.ToString();
-            WartoscProduktowTextBlock.Text = produkty.Sum(p => p.Cena * p.Ilosc).ToString("F2") + "zł";
+            WartoscProduktowTextBlock.Text = Magazyn.WartoscMagazynu(produkty).ToString("F2") + "zł";
         }
         /// <summary>
         /// Ta funkcja powstała na chwile tylko po to żeby pokazać wam dockpanel w czystym oknie

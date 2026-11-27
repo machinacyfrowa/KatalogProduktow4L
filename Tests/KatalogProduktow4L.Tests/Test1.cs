@@ -59,6 +59,16 @@ namespace KatalogProduktow4L.Tests
                 "Ustawienie ujemnej ceny powinno rzucić wyjątek ArgumentException.");
         }
         [TestMethod]
+        public void Produkt_IloscUjemna()
+        {
+            // Arrange
+            var produkt = PrzygotujProdukt();
+            // Act & Assert
+            var ex = Assert.ThrowsExactly<ArgumentException>(() => produkt.Ilosc = -1);
+            StringAssert.Contains(ex.Message, "Ilość nie może być ujemna.",
+                "Ustawienie ujemnej ilości powinno rzucić wyjątek ArgumentException.");
+        }
+        [TestMethod]
         public void PoliczWszystkieProdukty()
         {
             // Arrange

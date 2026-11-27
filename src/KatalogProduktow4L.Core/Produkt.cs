@@ -40,12 +40,16 @@ namespace KatalogProduktow4L.Core
             }
         }
         public string Kategoria { get; set; }
-        public int ilosc;
+        private int ilosc;
         public virtual int Ilosc
         {
             get { return ilosc; }
             set
             {
+                if (value < 0)
+                {
+                    throw new ArgumentException("Ilość nie może być ujemna.");
+                }
                 if (ilosc != value)
                 {
                     ilosc = value;
