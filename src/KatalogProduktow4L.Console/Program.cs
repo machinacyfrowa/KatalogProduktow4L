@@ -68,3 +68,9 @@ foreach (var produkt in produktyDziedziczone)
 produktyDziedziczone.Sort();
 //posortujmy produkty dziedziczone alfabetycznie po nazwie
 var produktyAlfabetycznie = produktyDziedziczone.OrderBy(p => p.Nazwa).ToList();
+//wypiszmy posortowane produkty
+Console.WriteLine("Produkty posortowane alfabetycznie po nazwie:");
+foreach (var produkt in produktyAlfabetycznie)
+{
+    Console.WriteLine(produkt.Nazwa);
+}
