@@ -73,16 +73,6 @@
                         <ComboBoxItem Content="Jedzenie" />
                     </ComboBox>
                     <!-- inne przydatne kontrolki -->
-                    <!-- tylko zeby pokazać - nie ląduja w finalnym projekcie
-                    <CheckBox x:Name="PromocjaCheckBox" Grid.Row="3" Grid.Column="0" Grid.ColumnSpan="2" Content="Promocja" Margin="0,5,0,0" />
-                    <TextBlock Grid.Row="4" Grid.Column="0" Text="Data dostawy:" FontSize="18" FontWeight="Bold" Margin="0,5,0,0"/>
-                    <DatePicker x:Name="DataDostawyDatePicker" Grid.Row="4" Grid.Column="1" Margin="0,5,0,0" />
-                    <TextBlock Grid.Row="5" Grid.Column="0" Text="Sposób dostawy:" FontSize="18" FontWeight="Bold" Margin="0,5,0,0"/>
-                    <StackPanel Grid.Row="5" Grid.Column="1" Margin="0,5,0,0">
-                        <RadioButton x:Name="DostawaKurierRadioButton" Content="Kurier" GroupName="SposobDostawy"/>
-                        <RadioButton x:Name="DostawaPocztaRadioButton" Content="Poczta" GroupName="SposobDostawy"/>
-                   
-                    </StackPanel> -->
                     <!-- w zależności od typu produktu -->
                     <!-- collapsed nie będzie widoczny dopóki nie włączycie go z kodu -->
                     <StackPanel x:Name="KolorStackPanel" Grid.Row="6" Grid.Column="0" Grid.ColumnSpan="2" Orientation="Horizontal" Visibility="Collapsed" Margin="0,5,0,0">
@@ -124,7 +114,7 @@
                     <TextBlock Grid.Row="3" Grid.Column="0" Text="Ilość:" Margin="0,5,0,0"/>
                     <TextBox x:Name="NowyIloscTextBox" Grid.Row="3" Grid.Column="1" Margin="0,5,0,0"/>
                     <TextBlock Grid.Row="4" Grid.Column="0" Text="Kategoria:" Margin="0,5,0,0"/>
-                    <ComboBox x:Name="NowyKategoriaComboBox" Grid.Row="4" Grid.Column="1" Margin="0,5,0,0   ">
+                    <ComboBox x:Name="NowyKategoriaComboBox" Grid.Row="4" Grid.Column="1" Margin="0,5,0,0">
                         <ComboBoxItem Content="Elektronika" />
                         <ComboBoxItem Content="Odzież" />
                         <ComboBoxItem Content="Jedzenie" />
